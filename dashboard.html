@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Expense Dashboard</h1>
+    <p>Total Expense: {{ total_expense }}</p>
+    <img src="{{ url_for('static', filename='expense_chart.png') }}" alt="Expense Chart">
+    
+    <form action="{{ url_for('dashboard') }}" method="post">
+        <input type="text" name="category" placeholder="Category" required>
+        <input type="number" name="amount" placeholder="Amount" required>
+        <button type="submit">Add Expense</button>
+    </form>
+
+    <h2>Expense List</h2>
+    <ul>
+        {% for expense in expenses %}
+        <li>{{ expense.date }} - {{ expense.category }}: ${{ expense.amount }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
